@@ -139,3 +139,12 @@ $("#weather-section").on("click", ".day", function(){
 })
 
 
+$("#add-guest-btn").on("click", function(){
+    var guest = document.querySelector("#new-guest").value.trim();
+    //console.log(guest);
+    var guestlistElement = document.getElementById("guestlist");
+    addWeatherData(guestlistElement,guest);
+    guestsArray.push(guest);
+    //console.log(guestsArray);
+    document.querySelector("#new-guest").value = "";
+})
