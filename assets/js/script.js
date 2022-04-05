@@ -7,7 +7,7 @@ var bbqDate = ""
 // for storing guests added to guestlist
 var guestsArray = [];
 // for storing recipes selected by the user
-var recipesArray = document.getElementById('recipes-section');
+var recipesArray =[];
 
 // var for recipes that have been pulled from the API
 var recipeData = {};
@@ -41,6 +41,11 @@ var renderRecipeList= function(){
         var images=document.createElement('img');
         var li= document.createElement('li');
         var recipeName=document.createElement('p');
+        var addBtn = document.createElement('button');
+
+
+        addBtn.textContent= "ADD";
+        addBtn.classList.add('button','is-primary');
         images.classList.add('recipe-photos');
         images.setAttribute('src',item.recipe.image);
         li.classList.add('recipe-cards');
@@ -48,6 +53,7 @@ var renderRecipeList= function(){
     
         li.appendChild(images);
         li.appendChild(recipeName);
+        li.appendChild(addBtn);
         ul.appendChild(li);
 
 
