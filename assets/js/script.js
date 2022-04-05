@@ -153,3 +153,18 @@ $("#add-guest-btn").on("click", function(){
     //console.log(guestsArray);
     document.querySelector("#new-guest").value = "";
 })
+
+// TO COLLAPSE SECTIONS
+// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
