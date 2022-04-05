@@ -12,9 +12,6 @@ var recipesArray = [];
 // var for recipes that have been pulled from the API
 var recipeData = {};
 
-// for storing data pulled from weather API
-// var weatherData = {};
-
 
 // basic function to pull bbq info from the recipe API
 var getRecipeData = function(){
@@ -33,13 +30,13 @@ var getRecipeData = function(){
         })
 }
 
+
 // FUNCTION TO CREATE P TAG AND ADD WEATHER ELEMENT
 var addWeatherData = function(dayElement, weatherDataType){
     var paraElement = document.createElement("p");
     paraElement.innerHTML = weatherDataType;
     dayElement.appendChild(paraElement);
 }
-
 
 
 // FUNCTION TO ASSIGN RELEVANT WEATHER INFO FROM PULLED DATA
@@ -87,8 +84,9 @@ var useWeatherData = function(weatherData){
         var uvi = Math.floor(weatherData.daily[i].uvi);
         var uviStr = `UV Index: ${uvi}`;
         addWeatherData(dayElement,uviStr);
-        
+        // var for displaying weather analysis
         var comment = ""
+        // conditional statement to generate comment and bg colouring
         if (dayTemp>=20 && weatherData.daily[i].weather[0].id>=800){
             comment = "Perfect, fire up the BBQ!";
             dayElement.classList.add("good");
@@ -123,10 +121,16 @@ var getWeatherData = function(){
                     })
             }
         })
-}
+        .catch(function(){
+            // switch for modal
+            alert("Unable to connect to weather data");
+        });
+};
+
 
 getWeatherData();
-// getRecipeData();
+//getRecipeData();
+
 
 // EVENT LISTENER FOR CLICKING ON DATE SECTION
 $("#weather-section").on("click", ".day", function(){
@@ -139,6 +143,7 @@ $("#weather-section").on("click", ".day", function(){
 })
 
 
+// EVENT LISTENER FOR "ADD GUEST" BUTTON
 $("#add-guest-btn").on("click", function(){
     var guest = document.querySelector("#new-guest").value.trim();
     //console.log(guest);
