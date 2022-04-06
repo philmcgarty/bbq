@@ -36,3 +36,56 @@
     text-decoration: none;
     cursor: pointer;
 }
+.day:hover {
+    background-color: beige;
+}
+
+
+
+/* STYLES FOR COLOUR CODED WEATHER BACKGROUNDS */
+.cold {
+    background-color: rgb(148, 233, 233);
+}
+
+.moderate {
+    background-color: rgb(240, 238, 126);
+}
+
+.good {
+    background-color: rgb(241, 197, 102);
+}
+
+.recipe-cards{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    background-color: bisque;
+    
+}
+
+.recipe-photos{
+
+    width:50px;
+    height: 50px;
+    margin: 10px;
+    padding: 5px;
+}
+
+h2{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/* .add-btn{
+
+    border-radius: 5px;
+    background-color:darkseagreen;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    
+    
+    
+} */
