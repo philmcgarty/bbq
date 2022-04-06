@@ -27,18 +27,46 @@
     </nav>
 
     <!-- Weather section -->
-    <section id="weather-section">
-        <h2></h2>
+    <section class="block" id="weather-section">
+        <h2 class="block">Choose a date:</h2>
+        <div class="columns is-mobile is-variable is-1-mobile is-2-tablet is-3-desktop">
+            <!-- Today -->
+            <div class="column day" data-date="" id="today+0">               
+            </div>
+            <!-- Tomorrow -->
+            <div class="column day" data-date="" id="today+1">                
+            </div>
+            <!-- In 2 days -->
+            <div class="column day" data-date="" id="today+2">                
+            </div>
+            <!-- In 3 days -->
+            <div class="column day" data-date="" id="today+3">                
+            </div>
+            <!-- In 4 days -->
+            <div class="column day" data-date="" id="today+4">               
+            </div>
+        </div>
     </section>
 
     <!-- Add guest section -->
-    <section id="add-guest-section">
-
+    <section class="block" id="add-guest-section">
+        <h2>Add Guests:</h2>
+        <form>
+            <input type="text" id="new-guest" name="new-guest" placeholder="Guest Name">
+            <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
+        </form>
+        
     </section>
 
     <!-- BBQ Information Form -->
-    <section id="bbq-form">
+    <section class="block" id="bbq-form">
         <h2></h2>
+        <p>
+            Date: <span id="bbq-date"></span>
+        </p>
+        <div id="guestlist">
+            Guest List:
+        </div>
     </section>
 
     <!-- Recipes Section -->

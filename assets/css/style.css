@@ -1,3 +1,21 @@
+.day:hover {
+    background-color: beige;
+}
+
+
+
+/* STYLES FOR COLOUR CODED WEATHER BACKGROUNDS */
+.cold {
+    background-color: rgb(148, 233, 233);
+}
+
+.moderate {
+    background-color: rgb(240, 238, 126);
+}
+
+.good {
+    background-color: rgb(241, 197, 102);
+}
 
 .recipe-cards{
     border: 1px solid black;
