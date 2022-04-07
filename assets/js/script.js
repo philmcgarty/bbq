@@ -32,8 +32,9 @@ var getRecipeData = function(){
                     .then(function(data){
                         recipeData = data;
                         console.log(recipeData);
+                        // Calling function showing recipe list
                         if(recipeData){
-                            renderRecipeList()
+                            renderRecipeList() 
                         }
 
                         
@@ -223,21 +224,27 @@ for (var i = 0; i < coll.length; i++) {
 
 var renderRecipeList= function(){
 
+    //  Run for each to get the item from API
 
     recipeData.hits.forEach(item=>{
+
+        // Create Element inside the card
         var images=document.createElement('img');
         var li= document.createElement('li');
         var recipeName=document.createElement('p');
         var addBtn = document.createElement('button');
 
-
+        // Add attribute and class for styling
         addBtn.textContent= "ADD";
-        addBtn.classList.add('button','is-primary');
-        images.classList.add('recipe-photos');
         images.setAttribute('src',item.recipe.image);
-        li.classList.add('recipe-cards');
+        li.classList.add('columns');
+        recipeName.classList.add('column','is-two-quaters')
+        addBtn.classList.add('button','is-primary');
+        images.classList.add('column','is-one-quarter');
+
         recipeName.textContent=item.recipe.label;
     
+        // Append to parent cards
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
