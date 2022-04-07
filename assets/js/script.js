@@ -14,6 +14,12 @@ var recipeData = {};
 
 var ul= document.getElementById ('list-recipes');
 
+
+
+
+
+
+
 // basic function to pull bbq info from the recipe API
 var getRecipeData = function(){
     
@@ -73,9 +79,10 @@ window.onclick = function(event) {
 
 
 // FUNCTION TO CREATE P TAG AND ADD WEATHER ELEMENT
-var addWeatherData = function(dayElement, weatherDataType){
+var addWeatherData = function(dayElement, weatherDataType, classStyle){
     var paraElement = document.createElement("p");
     paraElement.innerHTML = weatherDataType;
+    paraElement.setAttribute("class", classStyle);
     dayElement.appendChild(paraElement);
 }
 
@@ -104,26 +111,30 @@ var useWeatherData = function(weatherData){
         dayElement.appendChild(weatherIconDisplay);
         // display description
         var weatherDescription = weatherData.daily[i].weather[0].description;
-        addWeatherData(dayElement, weatherDescription);
+        // var para = document.createElement("p");
+        // para.setAttribute("class", "capitalize");
+        // para.innerHTML = weatherDescription;
+        // dayElement.appendChild(para);
+        addWeatherData(dayElement, weatherDescription, "capitalize");
         // display day temp
         var dayTemp = Math.floor(weatherData.daily[i].temp.day);
-        var dayTempStr = `Day Temp: ${dayTemp} °C`;
+        var dayTempStr = `Day: ${dayTemp}`;
         addWeatherData(dayElement, dayTempStr);
         // display daytime feels like temp
         var dayTempFeelsLike = Math.floor(weatherData.daily[i].feels_like.day);
-        var dayFeelsStr = `Feels Like: ${dayTempFeelsLike} °C`;
+        var dayFeelsStr = `Feels: ${dayTempFeelsLike}`;
         addWeatherData(dayElement, dayFeelsStr);
         // display evening temp
         var eveTemp = Math.floor(weatherData.daily[i].temp.eve);
-        var eveTempStr = `Eve Temp: ${eveTemp} °C`;
+        var eveTempStr = `Eve: ${eveTemp}`;
         addWeatherData(dayElement, eveTempStr);
-        // display evening feels like temp
-        var eveTempFeelsLike = Math.floor(weatherData.daily[i].feels_like.eve);
-        var eveFeelsStr = `Feels Like: ${eveTempFeelsLike} °C`;
-        addWeatherData(dayElement, eveFeelsStr);
+        // display evening feels like temp - removed for space
+        // var eveTempFeelsLike = Math.floor(weatherData.daily[i].feels_like.eve);
+        // var eveFeelsStr = `Feels: ${eveTempFeelsLike}`;
+        // addWeatherData(dayElement, eveFeelsStr);
         // display UVI
         var uvi = Math.floor(weatherData.daily[i].uvi);
-        var uviStr = `UV Index: ${uvi}`;
+        var uviStr = `UVI: ${uvi}`;
         addWeatherData(dayElement,uviStr);
         // var for displaying weather analysis
         var comment = ""
@@ -131,16 +142,16 @@ var useWeatherData = function(weatherData){
         if (dayTemp>=20 && weatherData.daily[i].weather[0].id>=800){
             comment = "Perfect, fire up the BBQ!";
             dayElement.classList.add("good");
-        } else if (dayTemp>=15 && weatherData.daily[i].weather[0].id>=800) {
+        } else if (dayTemp>=10 && weatherData.daily[i].weather[0].id>=800) {
             comment = "Good conditions";
             dayElement.classList.add("moderate");
-        } else if (dayTemp<15) {
+        } else if (dayTemp<10) {
             comment = "Brrr a bit chilly!";
             dayElement.classList.add("cold");
         } else {
             comment = "Maybe not today!"
         };
-        addWeatherData(dayElement, comment);
+        addWeatherData(dayElement, comment, "bold");
     };
 }
 
@@ -194,6 +205,21 @@ $("#add-guest-btn").on("click", function(){
     //console.log(guestsArray);
     document.querySelector("#new-guest").value = "";
 })
+
+// TO COLLAPSE SECTIONS
+// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
 
 var renderRecipeList= function(){
 
