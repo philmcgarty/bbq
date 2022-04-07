@@ -219,3 +219,12 @@ var renderRecipeList= function(){
 getRecipeData();
 
 
+// event listener for add recipe
+// gather the information into an object:
+//  var savedrecipe {
+//  icon: api icon info
+//  recipetitle: api label
+//  url: api url
+// }
+// push the object to recipesArray
+
