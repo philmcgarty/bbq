@@ -27,8 +27,9 @@
     </nav>
 
     <!-- Weather section -->
-    <section class="block" id="weather-section">
-        <h2 class="block">Choose a date:</h2>
+    <section class="block " id="weather-section">
+        <h2 class="collapsible">Choose a date:</h2>
+        <div style="display:block">
         <div class="columns is-mobile is-variable is-1-mobile is-2-tablet is-3-desktop">
             <!-- Today -->
             <div class="column day" data-date="" id="today+0">               
@@ -46,16 +47,24 @@
             <div class="column day" data-date="" id="today+4">               
             </div>
         </div>
+        </div>
     </section>
 
     <!-- Add guest section -->
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7e57eae89039dedad4a0233b96c192800a6c6576
     <section class="block" id="add-guest-section">
         <h2>Add Guests:</h2>
-        <form>
-            <input type="text" id="new-guest" name="new-guest" placeholder="Guest Name">
+        <form class="field has-addons">
+            <input type="text" class="input" id="new-guest" name="new-guest" placeholder="Guest Name">
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
         </form>
+<<<<<<< HEAD
+=======
         
+>>>>>>> 7e57eae89039dedad4a0233b96c192800a6c6576
     </section>
 
     <!-- BBQ Information Form -->
@@ -86,6 +95,40 @@
         </div>
 
     </section>
+
+    <h2>Modal Example1</h2>
+
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn" class="myBtn">Check for Recipe</button>
+    
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">×</span>
+        <p>Recipe not found</p>
+      </div>
+    
+    </div>
+    
+    
+    <h2>Modal Example2</h2>
+    
+    <!-- Trigger/Open The Modal -->
+    <button id="myBtn2" class="myBtn">Confirm Date</button>
+    
+    <!-- The Modal -->
+    <div id="myModal2" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">×</span>
+        <p>Party date already exists</p>
+      </div>
+    
+    </div>
+    
 
 
     <!-- jQuery ref -->

@@ -1,8 +1,55 @@
-.day:hover {
-    background-color: beige;
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
 
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.day:hover {
+    background-color: beige;
+    cursor: pointer;
+}
+
+.capitalize {
+    text-transform:capitalize;
+}
+
+.bold {
+    font-weight: bold;
+}
 
 /* STYLES FOR COLOUR CODED WEATHER BACKGROUNDS */
 .cold {
@@ -10,11 +57,46 @@
 }
 
 .moderate {
-    background-color: rgb(240, 238, 126);
+    background-color: rgb(241, 223, 56);
 }
 
 .good {
     background-color: rgb(241, 197, 102);
+}
+
+.cold, .moderate, .good {
+    border-right: black solid 1px;
+}
+
+/* COLLAPSIBLES STYLING */
+/* Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp */
+.collapsible {
+    background-color: #777;
+    color: white;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    margin-bottom: 0.5rem
+}
+  
+.active, .collapsible:hover {
+    background-color: #555;
+}
+  
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f1f1f1;
+}
+/* END COLLAPSIBLES STYLING */
+
+#add-guest-btn {
+    margin-left: 5px;
 }
 
 .recipe-cards{
@@ -51,3 +133,4 @@ h2{
     
     
 } */
+
