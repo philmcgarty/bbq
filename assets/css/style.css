@@ -1,9 +1,16 @@
 
 .day:hover {
     background-color: beige;
+    cursor: pointer;
 }
 
+.capitalize {
+    text-transform:capitalize;
+}
 
+.bold {
+    font-weight: bold;
+}
 
 /* STYLES FOR COLOUR CODED WEATHER BACKGROUNDS */
 .cold {
@@ -11,11 +18,15 @@
 }
 
 .moderate {
-    background-color: rgb(240, 238, 126);
+    background-color: rgb(241, 223, 56);
 }
 
 .good {
     background-color: rgb(241, 197, 102);
+}
+
+.cold, .moderate, .good {
+    border-right: black solid 1px;
 }
 
 /* COLLAPSIBLES STYLING */
@@ -30,19 +41,24 @@
     text-align: left;
     outline: none;
     font-size: 15px;
-  }
+    margin-bottom: 0.5rem
+}
   
-  .active, .collapsible:hover {
+.active, .collapsible:hover {
     background-color: #555;
-  }
+}
   
-  .content {
+.content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-  }
+}
+/* END COLLAPSIBLES STYLING */
 
+#add-guest-btn {
+    margin-left: 5px;
+}
 
 .recipe-cards{
     border: 1px solid black;
