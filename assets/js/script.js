@@ -1,6 +1,7 @@
 // Global Variables
 var searchRecipeInput=document.getElementById('recipe-search-input');
 var searchBtn=document.getElementById('search-recipe-btn');
+var addedRecipes=document.getElementById('addedRecipes');
 
 
 // for saving all info to local storage
@@ -41,8 +42,7 @@ var getRecipeData = function(searchValue){
 
                         if(recipeData){
                             renderRecipeList();
-
-                            
+                             
                         }
                     })
             }
@@ -84,12 +84,26 @@ var renderRecipeList= function(){
         li.appendChild(addBtn);
         ul.appendChild(li);
 
+        // Add click to remove the parent container
+        
+         
+        $ (addBtn).on('click', function() {
+            $(this).parent('li').remove();
 
-    })
+            // Display li on bbq information
+
+            
+        });
+             
+            
+        
+
+
+    });
     
    
 
-}
+};
 
 getRecipeData("bbq");
 
@@ -119,6 +133,9 @@ searchBtn.addEventListener('click',function(){
 
 
 });
+
+
+
 
 
 
