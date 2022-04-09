@@ -2,6 +2,7 @@
 var searchRecipeInput=document.getElementById('recipe-search-input');
 var searchBtn=document.getElementById('search-recipe-btn');
 var addedRecipes=document.getElementById('addedRecipes');
+
 // for saving all info to local storage
 var formInfoArray = [];
 // for saving date of bbq to local storage
@@ -20,12 +21,11 @@ var ul= document.getElementById ('list-recipes');
 
 
 
-
-
 // basic function to pull bbq info from the recipe API
 var getRecipeData = function(searchValue){
     
     var tastyUrl = "https://api.edamam.com/search?q="+searchValue+"&app_id=800e3765&app_key=fe74dbedc36e502afaf6d444ca0f100e";
+
 
     console.log(tastyUrl);
     fetch(tastyUrl)
@@ -37,9 +37,11 @@ var getRecipeData = function(searchValue){
                         console.log(recipeData);
                         // Calling function showing recipe list
 
+
                         if(recipeData){
                             renderRecipeList();
                              
+
                         }
                     })
             }
@@ -64,29 +66,35 @@ var renderRecipeList= function(){
         var li= document.createElement('li');
         var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
+
         var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
         removeBtn.textContent="Remove";
         addBtn.textContent= "Add";
+
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns','recipe-items');
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
+
         removeBtn.classList.add ('button','is-primary');
         removeBtn.setAttribute('style','display:none');
+
         images.classList.add('column','is-one-quarter');
 
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
+
         
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
         li.appendChild(removeBtn)
+
         ul.appendChild(li);
         
 
@@ -98,6 +106,7 @@ var renderRecipeList= function(){
             event.target.parentNode.remove();
             // Add to bbq information
             addedRecipes.appendChild(event.target.parentNode);
+
             // Replace add button by remove button
             event.target.style.display= "none";
             event.target.nextElementSibling.style.display="block";
@@ -109,6 +118,7 @@ var renderRecipeList= function(){
             e.target.parentNode.remove();
 
         })
+
         
 
 
@@ -122,15 +132,9 @@ getRecipeData("bbq");
 
 
 // Add Even listener to click the button 
-
-
-
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
-
-    
-
 
      // remove item if having data before render new list
 
@@ -140,13 +144,10 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-};
-        
+};      
         getRecipeData(searchRecipeData);
 
 });
-
-
 
 
 // Get the modal
@@ -325,4 +326,6 @@ for (var i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
+
 };
+
