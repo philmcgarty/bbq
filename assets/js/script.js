@@ -15,8 +15,57 @@ var recipeData = {};
 var ul= document.getElementById ('list-recipes');
 
 
+//Global Variables
+var recipeList = [];
+var guestList = [];
+var dateSelected = "Monday";
+const storedInput = localStorage.getItem('')
 
+if(storageInput) {
+    text.textcontent = storedInput
+}
 
+// New Class for holding a BBQ
+console.log("Im working!");
+class bbqEvent {
+constructor(recipes, guests, date) {
+this.recipes = recipes;
+this.guests = guests;
+this.date = date;
+}
+}
+$("#add-guest-btn").on("click", function(){
+var name= document.getElementById("new-guest").value;
+guestList.push(name);
+console.log("Guest added");
+console.log(name);
+console.log(guestList);
+
+})
+$("#add-recipe-btn").on("click", function(){
+console.log("Clearing");
+localStorage.clear();
+
+})
+
+$("#weather-section").on("click", function(){
+var retrievedBBQ = localStorage.getItem(dateSelected);
+console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
+const textForDemo = JSON.parse(retrievedBBQ);
+document.getElementById("weather-section").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
+
+})
+
+$("#save-party-info-btn").on("click", function(){
+thisBBQ = new bbqEvent();
+thisBBQ.recipes = ["chicken", "beef", "taco"];
+thisBBQ.guests = guestList;
+thisBBQ.date = '';
+console.log(`The contents of the BBQ on ${thisBBQ.date} guest list are: ${thisBBQ.guests} with the recipes for: ${thisBBQ.recipes}`);
+recipeList = "";
+guestList = "";
+localStorage.setItem(dateSelected, JSON.stringify(thisBBQ))
+})
 
 
 
@@ -176,7 +225,11 @@ var getWeatherData = function(){
         })
         .catch(function(){
             // switch for modal
-            alert("Unable to connect to weather data");
+            var modal = document.getElementById('weatherModal');
+            modal.style.display = 'block';
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
         });
 };
 

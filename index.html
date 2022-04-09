@@ -15,7 +15,7 @@
 <body>
     <!-- Page heading -->
     <header>
-        
+        <h1>BBQ Boss</h1>
     </header>
 
     <!-- Previous saved bbq parties list -->
@@ -48,17 +48,19 @@
     </section>
 
     <!-- Add guest section -->
-
+    
     <section class="block" id="add-guest-section">
         <h2>Add Guests:</h2>
         <form class="field has-addons">
             <input type="text" class="input" id="new-guest" name="new-guest" placeholder="Guest Name">
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
+            <button class="button is-primary" type="button" id="save-party-info-btn">Save Party Info</button>
+            
         </form>
         
     </section>
 
-    <!-- BBQ Information Form -->
+     <!-- BBQ Information Form -->
     <section class="block" id="bbq-form">
         <h2></h2>
         <p>
@@ -72,11 +74,7 @@
     <!-- Recipes Section -->
     <section id="recipes-section">
         <h2>BBQ RECIPES</h2>
-        <label class="lable-search">Search Recipe</label>
-        <input id="recipe-search-input" class="recipe-search-input">
-        <button class="search-recipe-btn" id="search-recipe-btn">Search</button>
-
-        </input>
+       
 
         <div class="display-recipe-container">
 
@@ -120,7 +118,16 @@
     
     </div>
     
-
+    <!-- The Modal -->
+    <div id="weatherModal" class="modal">
+    
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">×</span>
+          <p>Unable to connect to weather data</p>
+        </div>
+      
+      </div>
 
     <!-- jQuery ref -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
