@@ -121,6 +121,24 @@ h2{
     font-weight: 500;
     font-size: 20px;
 }
+/* Main title */
+.title {
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(175, 117, 9);
+    background-color: #000;
+    padding: 40px 10px;
+}
+
+/* Hero Banner */
+.hero {
+    background-image: url("../images/BBQ-Sauce_Getty.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 200px;
+}
+
+
 
 /* .add-btn{
 
