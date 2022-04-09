@@ -12,7 +12,7 @@
     <title>BBQ Boss</title>
 </head>
 
-<body>
+<body >
     <!-- Page heading -->
     <header>
         <h1 class="title">BBQ Boss</h1>
@@ -54,9 +54,9 @@
     </section>
 
     <!-- Add guest section -->
-
+<div class="box has-background-black">
     <section class="block" id="add-guest-section">
-        <h2>Add Guests:</h2>
+        <h2 class="is-size-3 title has-text-centered">ADD GUESTS:</h2>
         <form class="field has-addons">
             <input type="text" class="input" id="new-guest" name="new-guest" placeholder="Guest Name">
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
@@ -67,10 +67,10 @@
     <!-- BBQ Information Form -->
     <section class="block" id="bbq-form">
         <h2></h2>
-        <p>
+        <p class="has-text-white-bis">
             Date: <span id="bbq-date"></span>
         </p>
-        <div id="guestlist">
+        <div id="guestlist" class="has-text-white-bis">
             Guest List:
         </div>
         <div id="addedRecipes">
@@ -78,18 +78,25 @@
         </div>
     </section>
 
+</div>
+
     <!-- Recipes Section -->
-    <section id="recipes-section">
-        <h2 class>BBQ RECIPES</h2>
-        <label class="lable-search">Search Recipe</label>
+    <section id="recipes-section" class="has-background-black box">
+        <h2 class="is-size-3 has-background-black title ml-2 has-text-centered">BBQ RECIPES</h2>
+        <hr class="has-background-yellow">
+        <div class="has-text-centered">
+        <label class="lable-search has-text-white m-3">Search Recipe</label>
         <input id="recipe-search-input" class="recipe-search-input" placeholder="Search for recipes">
-        <button class="search-recipe-btn" id="search-recipe-btn">Search</button>
+        <button class="search-recipe-btn m-2 has-text-black" id="search-recipe-btn">Search</button>
 
         </input>
+    </div>
 
-        <div class="display-recipe-container"  >
+        <hr class="has-background-yellow">
 
-            <h2 class="collapsible">Recipes</h2>
+        <div class="display-recipe-container "  >
+
+            <h2 class="collapsible">👨🏽‍🍳👨🏽‍🍳👨🏽‍🍳 Recipes  👨🏽‍🍳👨🏽‍🍳👨🏽‍🍳</h2>
 
 
             <ul id="list-recipes" class="recipes">
@@ -99,6 +106,7 @@
         </div>
 
     </section>
+    <div class="has-background-black title">
 
     <h2>Modal Example1</h2>
 
@@ -115,7 +123,8 @@
       </div>
     
     </div>
-    
+
+    <hr class="has-background-yellow">
     
     <h2>Modal Example2</h2>
     
@@ -132,6 +141,7 @@
       </div>
     
     </div>
+</div>
     
 
 

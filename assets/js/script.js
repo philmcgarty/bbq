@@ -38,7 +38,7 @@ var getRecipeData = function(searchValue){
                         // Calling function showing recipe list
 
 
-                        if(recipeData){
+                    if(recipeData){
                             renderRecipeList();
                              
 
@@ -71,19 +71,22 @@ var renderRecipeList= function(){
         var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
-        removeBtn.textContent="Remove";
+        li.classList.add('columns','recipe-items','m-1','p-1','has-background-warning-light');
+
         addBtn.textContent= "Add";
+        addBtn.classList.add('button','is-primary','mr-4');
         images.setAttribute('src',item.recipe.image);
-        li.classList.add('columns','recipe-items');
+        images.classList.add('image','is-one-quarter','is-48x48');
+        
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
-        addBtn.classList.add('button','is-primary');
-
-        removeBtn.classList.add ('button','is-primary');
+        
+        removeBtn.textContent="Remove";
+        removeBtn.classList.add ('button','is-primary','mr-4');
         removeBtn.setAttribute('style','display:none');
 
-        images.classList.add('column','is-one-quarter');
+       
 
         recipeName.textContent=item.recipe.label;
     
