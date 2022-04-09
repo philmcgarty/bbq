@@ -23,11 +23,6 @@ var ul= document.getElementById ('list-recipes');
 var recipeList = [];
 var guestList = [];
 var dateSelected = "Monday";
-const storedInput = localStorage.getItem('')
-
-if(storageInput) {
-    text.textcontent = storedInput
-}
 
 // New Class for holding a BBQ
 console.log("Im working!");
@@ -104,72 +99,63 @@ var getRecipeData = function(searchValue){
 
 
 getRecipeData("bbq");
-
-
-
 var renderRecipeList= function(){
-
     //  Run for each to get the item from API
-
     recipeData.hits.forEach(item=>{
-
         // Create Element inside the card
         var images=document.createElement('img');
         var li= document.createElement('li');
         var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
-
+        var removeBtn=document.createElement('button');
         // Add attribute and class for styling
-        addBtn.textContent= "ADD";
+        removeBtn.textContent="Remove";
+        addBtn.textContent= "Add";
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns','recipe-items');
-        recipeName.classList.add('column','is-two-quaters','recipe-name')
+        recipeName.classList.add('column','is-two-quaters','recipe-name');
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
+        removeBtn.classList.add ('button','is-primary');
+        removeBtn.setAttribute('style','display:none');
         images.classList.add('column','is-one-quarter');
-
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
+        
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
+        li.appendChild(removeBtn);
         ul.appendChild(li);
         
-
         // Add click to remove the parent container
-
         addBtn.addEventListener('click',function(event){
             
             // Remove li
             event.target.parentNode.remove();
             // Add to bbq information
             addedRecipes.appendChild(event.target.parentNode);
-
+            // Replace add button by remove button
+            event.target.style.display= "none";
+            event.target.nextElementSibling.style.display="block";
         });
+        // Add click event for remove button
+        removeBtn.addEventListener('click',function(e){
+            e.target.parentNode.remove();
+        })
         
-
-
     });
     
    
-
 };
-
-getRecipeData("bbq");
-
-
+     
 // Add Even listener to click the button 
-
-
 
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
-
-    
-
 
      // remove item if having data before render new list
 
@@ -179,7 +165,7 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-    }
+    };
         
         getRecipeData(searchRecipeData);
 
@@ -385,8 +371,8 @@ var renderRecipeList= function(){
         addBtn.textContent= "ADD";
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns');
-        recipeName.classList.add('column','is-two-quaters')
-        addBtn.classList.add('button','is-primary');
+        recipeName.classList.add('column','is-two-quaters');
+        // addBtn.classList.add('button','is-primary');
         images.classList.add('column','is-one-quarter');
 
         recipeName.textContent=item.recipe.label;
