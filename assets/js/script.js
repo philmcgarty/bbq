@@ -67,23 +67,29 @@ var renderRecipeList= function(){
         var li= document.createElement('li');
         var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
+        var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
-        addBtn.textContent= "ADD";
+        removeBtn.textContent="Remove";
+        addBtn.textContent= "Add";
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns','recipe-items');
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
+        removeBtn.classList.add ('button','is-primary');
+        removeBtn.setAttribute('style','display:none');
         images.classList.add('column','is-one-quarter');
 
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
+        
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
+        li.appendChild(removeBtn)
         ul.appendChild(li);
         
 
@@ -95,8 +101,17 @@ var renderRecipeList= function(){
             event.target.parentNode.remove();
             // Add to bbq information
             addedRecipes.appendChild(event.target.parentNode);
+            // Replace add button by remove button
+            event.target.style.display= "none";
+            event.target.nextElementSibling.style.display="block";
+
 
         });
+        // Add click event for remove button
+        removeBtn.addEventListener('click',function(e){
+            e.target.parentNode.remove();
+
+        })
         
 
 
@@ -268,15 +283,14 @@ var useWeatherData = function(weatherData){
         if (dayTemp>=20 && weatherData.daily[i].weather[0].id>=800){
             comment = "Perfect, fire up the BBQ!";
             dayElement.classList.add("good");
-        } else if (dayTemp>=15 && weatherData.daily[i].weather[0].id>=800) {
+        } else if (dayTemp>=10 && weatherData.daily[i].weather[0].id>=800) {
             comment = "Good conditions";
             dayElement.classList.add("moderate");
-        } else if (dayTemp<15) {
+        } else if (dayTemp<10) {
             comment = "Brrr a bit chilly!";
             dayElement.classList.add("cold");
         } else {
             comment = "Maybe not today!"
-            dayElement.classList.add("cold");
         };
         addWeatherData(dayElement, comment, "bold");
     };
@@ -350,13 +364,4 @@ for (var i = 0; i < coll.length; i++) {
 
 
 
-
-// event listener for add recipe
-// gather the information into an object:
-//  var savedrecipe {
-//  icon: api icon info
-//  recipetitle: api label
-//  url: api url
-// }
-// push the object to recipesArray
 
