@@ -3,7 +3,6 @@ var searchRecipeInput=document.getElementById('recipe-search-input');
 var searchBtn=document.getElementById('search-recipe-btn');
 var addedRecipes=document.getElementById('addedRecipes');
 
-
 // for saving all info to local storage
 var formInfoArray = [];
 // for saving date of bbq to local storage
@@ -17,8 +16,6 @@ var recipesArray =[];
 var recipeData = {};
 
 var ul= document.getElementById ('list-recipes');
-
-
 
 
 
@@ -40,9 +37,11 @@ var getRecipeData = function(searchValue){
                         console.log(recipeData);
                         // Calling function showing recipe list
 
+
                         if(recipeData){
                             renderRecipeList();
                              
+
                         }
                     })
             }
@@ -69,6 +68,8 @@ var renderRecipeList= function(){
         var addBtn = document.createElement('button');
         var removeBtn=document.createElement('button');
 
+        var removeBtn=document.createElement('button');
+
         // Add attribute and class for styling
         removeBtn.textContent="Remove";
         addBtn.textContent= "Add";
@@ -78,8 +79,10 @@ var renderRecipeList= function(){
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
+
         removeBtn.classList.add ('button','is-primary');
         removeBtn.setAttribute('style','display:none');
+
         images.classList.add('column','is-one-quarter');
 
         recipeName.textContent=item.recipe.label;
@@ -106,6 +109,11 @@ var renderRecipeList= function(){
             event.target.nextElementSibling.style.display="block";
 
 
+            // Replace add button by remove button
+            event.target.style.display= "none";
+            event.target.nextElementSibling.style.display="block";
+
+
         });
         // Add click event for remove button
         removeBtn.addEventListener('click',function(e){
@@ -125,15 +133,9 @@ getRecipeData("bbq");
 
 
 // Add Even listener to click the button 
-
-
-
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
-
-    
-
 
      // remove item if having data before render new list
 
@@ -143,46 +145,10 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-};
-        
+};      
         getRecipeData(searchRecipeData);
 
-
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // Get the modal
@@ -361,8 +327,4 @@ for (var i = 0; i < coll.length; i++) {
     }
   });
 };
-
-
-
-
 
