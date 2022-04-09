@@ -40,9 +40,11 @@ var getRecipeData = function(searchValue){
                         console.log(recipeData);
                         // Calling function showing recipe list
 
-                        if(recipeData){
-                            renderRecipeList();
+   
                              
+                        if(recipeData){
+                            renderRecipeList() 
+
                         }
                     })
             }
@@ -268,14 +270,15 @@ var useWeatherData = function(weatherData){
         if (dayTemp>=20 && weatherData.daily[i].weather[0].id>=800){
             comment = "Perfect, fire up the BBQ!";
             dayElement.classList.add("good");
-        } else if (dayTemp>=10 && weatherData.daily[i].weather[0].id>=800) {
+        } else if (dayTemp>=15 && weatherData.daily[i].weather[0].id>=800) {
             comment = "Good conditions";
             dayElement.classList.add("moderate");
-        } else if (dayTemp<10) {
+        } else if (dayTemp<15) {
             comment = "Brrr a bit chilly!";
             dayElement.classList.add("cold");
         } else {
             comment = "Maybe not today!"
+            dayElement.classList.add("cold");
         };
         addWeatherData(dayElement, comment, "bold");
     };
@@ -345,8 +348,54 @@ for (var i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
+
 };
 
+}
+
+var renderRecipeList= function(){
+
+    //  Run for each to get the item from API
+
+    recipeData.hits.forEach(item=>{
+
+        // Create Element inside the card
+        var images=document.createElement('img');
+        var li= document.createElement('li');
+        var recipeName=document.createElement('p');
+        var addBtn = document.createElement('button');
+
+        // Add attribute and class for styling
+        addBtn.textContent= "ADD";
+        images.setAttribute('src',item.recipe.image);
+        li.classList.add('columns');
+        recipeName.classList.add('column','is-two-quaters')
+        addBtn.classList.add('button','is-primary');
+        images.classList.add('column','is-one-quarter');
+
+        recipeName.textContent=item.recipe.label;
+    
+        // Append to parent cards
+        li.appendChild(images);
+        li.appendChild(recipeName);
+        li.appendChild(addBtn);
+        ul.appendChild(li);
 
 
+    })
+    
+   
+
+
+
+
+
+// event listener for add recipe
+// gather the information into an object:
+//  var savedrecipe {
+//  icon: api icon info
+//  recipetitle: api label
+//  url: api url
+// }
+// push the object to recipesArray
 
