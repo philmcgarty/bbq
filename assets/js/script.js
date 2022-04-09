@@ -65,14 +65,16 @@ var renderRecipeList= function(){
         // Create Element inside the card
         var images=document.createElement('img');
         var li= document.createElement('li');
-        var recipeName=document.createElement('p');
+        var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
 
         // Add attribute and class for styling
         addBtn.textContent= "ADD";
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns','recipe-items');
-        recipeName.classList.add('column','is-two-quaters')
+        recipeName.classList.add('column','is-two-quaters','recipe-name')
+        recipeName.setAttribute('href',item.recipe.url);
+        recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
         images.classList.add('column','is-one-quarter');
 
@@ -83,19 +85,18 @@ var renderRecipeList= function(){
         li.appendChild(recipeName);
         li.appendChild(addBtn);
         ul.appendChild(li);
+        
 
         // Add click to remove the parent container
-        
-         
-        $ (addBtn).on('click', function() {
-            $(this).parent('li').remove();
 
-            // Display li on bbq information
-
+        addBtn.addEventListener('click',function(event){
             
+            // Remove li
+            event.target.parentNode.remove();
+            // Add to bbq information
+            addedRecipes.appendChild(event.target.parentNode);
+
         });
-             
-            
         
 
 
