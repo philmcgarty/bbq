@@ -87,9 +87,10 @@
 
         </input>
 
-        <div class="display-recipe-container" >
+        <div class="display-recipe-container"  >
 
             <ul id="list-recipes" class="recipes">
+                
                 
             </ul>
         </div>
@@ -140,6 +141,13 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
     <!-- Custom JavaScript -->
     <script src="./assets/js/script.js"></script>
+    <script>
+    $( function() {
+        $( "#accordion" ).accordion({
+          collapsible: true
+        });
+      } );
+      </script>
 </body>
 
 </html>
