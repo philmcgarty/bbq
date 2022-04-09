@@ -15,8 +15,14 @@
 <body>
     <!-- Page heading -->
     <header>
-        <h1>BBQ Boss</h1>
+        <h1 class="title">BBQ Boss</h1>
     </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- <img class="hero-image" src="./assets/images/BBQ-Sauce_Getty.jpg" /> -->
+    </section>
+
 
     <!-- Previous saved bbq parties list -->
     <nav id="party-search">
@@ -69,14 +75,21 @@
         <div id="guestlist">
             Guest List:
         </div>
+        <div id="addedRecipes">
+
+        </div>
     </section>
 
     <!-- Recipes Section -->
     <section id="recipes-section">
         <h2>BBQ RECIPES</h2>
-       
+        <label class="lable-search">Search Recipe</label>
+        <input id="recipe-search-input" class="recipe-search-input" placeholder="Search for recipes">
+        <button class="search-recipe-btn" id="search-recipe-btn">Search</button>
 
-        <div class="display-recipe-container">
+        </input>
+
+        <div class="display-recipe-container" >
 
             <ul id="list-recipes" class="recipes">
                 
