@@ -110,6 +110,7 @@ var renderRecipeList= function(){
         // Add click event for remove button
         removeBtn.addEventListener('click',function(e){
             e.target.parentNode.remove();
+            // Peter
 
         })
         
