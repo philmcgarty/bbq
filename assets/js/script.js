@@ -143,14 +143,15 @@ var useWeatherData = function(weatherData){
         if (dayTemp>=20 && weatherData.daily[i].weather[0].id>=800){
             comment = "Perfect, fire up the BBQ!";
             dayElement.classList.add("good");
-        } else if (dayTemp>=10 && weatherData.daily[i].weather[0].id>=800) {
+        } else if (dayTemp>=15 && weatherData.daily[i].weather[0].id>=800) {
             comment = "Good conditions";
             dayElement.classList.add("moderate");
-        } else if (dayTemp<10) {
+        } else if (dayTemp<15) {
             comment = "Brrr a bit chilly!";
             dayElement.classList.add("cold");
         } else {
             comment = "Maybe not today!"
+            dayElement.classList.add("cold");
         };
         addWeatherData(dayElement, comment, "bold");
     };
