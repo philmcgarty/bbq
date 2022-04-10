@@ -145,3 +145,21 @@ h2{
     background-color: #000;
 }
 
+.header-statement{
+font-family: cursive;
+color: bisque;
+font-size: 24px;
+text-align: center;
+}
+.header-statement-author{
+    font-family: cursive;
+color: bisque;
+font-size: 20px;
+margin: 10px;
+text-align: center
+
+} 
+.bbq-boss{
+    font-size: 60px;
+}
+

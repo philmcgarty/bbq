@@ -15,7 +15,12 @@
 <body >
     <!-- Page heading -->
     <header>
-        <h1 class="title">BBQ Boss</h1>
+        <h1 class="title has-background-black bbq-boss">BBQ Boss <br> <span class="is-italic has-text-weight-light header-statement">“If summer has one defining 
+            scent, it’d be the smell of 
+            barbecue.”</span> <br> <span class="has-text-weight-light header-statement-author is-italic">_Katie Lee_
+            </span>
+        </h1>
+       
     </header>
 
     <!-- Hero Section -->
@@ -30,10 +35,10 @@
     </nav>
 
     <!-- Weather section -->
-    <section class="block " id="weather-section">
+    <section class="block mb-1 " id="weather-section">
         <h2 class="collapsible">Choose a date:</h2>
-        <div style="display:block">
-        <div class="columns is-mobile is-variable is-1-mobile is-2-tablet is-3-desktop">
+        <div  class="weathers-forecast box">
+        <div class="columns is-mobile is-variable is-1-mobile is-2-tablet is-3-desktop ">
             <!-- Today -->
             <div class="column day" data-date="" id="today+0">               
             </div>
@@ -54,7 +59,7 @@
     </section>
 
     <!-- Add guest section -->
-<div class="box has-background-black">
+<div class="box has-background-grey-dark m-1">
     <section class="block" id="add-guest-section">
         <h2 class="is-size-3 title has-text-centered">ADD GUESTS:</h2>
         <form class="field has-addons">
@@ -85,7 +90,7 @@
         <h2 class="is-size-3 has-background-black title ml-2 has-text-centered">BBQ RECIPES</h2>
         <hr class="has-background-yellow">
         <div class="has-text-centered">
-        <label class="lable-search has-text-white m-3">Search Recipe</label>
+        <label class="lable-search has-text-white m-3 is-hidden-mobile">Search Recipe</label>
         <input id="recipe-search-input" class="recipe-search-input" placeholder="Search for recipes">
         <button class="search-recipe-btn m-2 has-text-black" id="search-recipe-btn">Search</button>
 

@@ -40,6 +40,7 @@ var getRecipeData = function(searchValue){
 
                     if(recipeData){
                             renderRecipeList();
+                           
                              
 
                         }
@@ -71,12 +72,12 @@ var renderRecipeList= function(){
         var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
-        li.classList.add('columns','recipe-items','m-1','p-1','has-background-warning-light');
+        li.classList.add('columns','recipe-items','m-1','p-1','has-background-warning-light','has-text-centered-mobile');
 
         addBtn.textContent= "Add";
         addBtn.classList.add('button','is-primary','mr-4');
         images.setAttribute('src',item.recipe.image);
-        images.classList.add('image','is-one-quarter','is-48x48');
+        images.classList.add('image','is-one-quarter','is-48x48','is-inline-block-mobile');
         
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
@@ -148,8 +149,11 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-};      
+};    
         getRecipeData(searchRecipeData);
+       
+
+      
 
 });
 
