@@ -41,9 +41,7 @@ var getRecipeData = function(searchValue){
                     if(recipeData){
                             renderRecipeList();
                            
-                             
-
-                        }
+                        } 
                     })
             }
         }).catch(function(){
@@ -140,6 +138,7 @@ getRecipeData("bbq");
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
+    
 
      // remove item if having data before render new list
 
@@ -150,11 +149,9 @@ searchBtn.addEventListener('click',function(){
 
     } );
 };    
+    
         getRecipeData(searchRecipeData);
        
-
-      
-
 });
 
 
