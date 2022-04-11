@@ -69,9 +69,7 @@ function restore() {
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',recipeI.recipe.url);
         recipeName.setAttribute('target','_blank');
-        // addBtn.classList.add('button','is-primary', 'recipe-add-button');
-        // removeBtn.classList.add ('button','is-primary');
-        // removeBtn.setAttribute('style','display:none');
+
         images.classList.add('column','is-one-quarter');
 
         li.setAttribute("data-query", recipeData.q)
@@ -221,40 +219,6 @@ searchBtn.addEventListener('click',function(){
         
     getRecipeData(searchRecipeData, true);
 });
-
-// // Get the modal
-// var modal = document.getElementsByClassName('modal');
-
-// // Get the button that opens the modal
-// var btn = document.getElementsByClassName("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close");
-
-// // When the user clicks the button, open the modal 
-// btn[0].onclick = function() {
-//     modal[0].style.display = "block";
-// }
-
-// btn[1].onclick = function() {
-//     modal[1].style.display = "block";
-// }
-// // When the user clicks on <span> (x), close the modal
-// span[0].onclick = function() {
-//     modal[0].style.display = "none";
-// }
-
-// span[1].onclick = function() {
-//     modal[1].style.display = "none";
-// }
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//     if (event.target == modal) {
-//         modal.style.display = "none";
-//     }
-// }
-
-// Modal Input
 
 // FUNCTION TO CREATE P TAG AND ADD SOME ELEMENT
 var addUiData = function(element, elementData, optionalClassStyle){
