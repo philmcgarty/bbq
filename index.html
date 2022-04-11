@@ -58,13 +58,14 @@
 
     <section class="block" id="add-guest-section">
         <h2>Add Guests:</h2>
-        <form class="field has-addons">
+        <!-- <form class="field has-addons"> -->
             <input type="text" class="input" id="new-guest" name="new-guest" placeholder="Guest Name">
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
-            <button class="button is-primary" type="button" id="save-party-info-btn" onclick="savePartyInfo()" >Save Party Info</button>
-        </form>
+            <button class="button is-primary" type="button" id="save-party-info-btn" onclick="save()">Save Party Info</button>
+            <button class="button is-primary" type="button" id="restore-party-info-btn" onclick="restore()">Restore Party Info</button>
+        <!-- </form> -->
      
-        <script>
+        <!-- <script>
             // const  savePartyInfoBtn = document.querySelector('#save-party-info-btn');
             // const modalBg = document.querySelector('.modal-background');
             // const bulmaModal = document.getElementById('bulmaModal');
@@ -88,7 +89,7 @@
                 const localStorageObject = { ...localStorage }
                 console.log("Local storage:" +  JSON.stringify(localStorageObject))
             }
-        </script>  
+        </script>   -->
     </section>
 
     <!-- BBQ Information Form -->

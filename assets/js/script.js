@@ -17,54 +17,110 @@ var recipeData = {};
 // var for object weather data 
 var weatherData = {};
 
-var ul= document.getElementById ('list-recipes');
-
-
 //Global Variables
 var recipeList = [];
 var guestList = [];
 var dateSelected = "Monday";
 // New Class for holding a BBQ
 console.log("Im working!");
-class bbqEvent {
-constructor(recipes, guests, date) {
-this.recipes = recipes;
-this.guests = guests;
-this.date = date;
+
+// class bbqEvent {
+//     constructor(recipes, guests, date) {
+//         this.recipes = recipes;
+//         this.guests = guests;
+//         this.date = date;
+//     }
+// }
+
+// $("#add-guest-btn").on("click", function(){
+//     var name= document.getElementById("new-guest").value;
+//     guestList.push(name);
+//     console.log("Guest added");
+//     console.log(name);
+//     console.log(guestList);
+// })
+
+// $("#added-Recipes").on("click", function(){
+//     console.log("Clearing");
+//     localStorage.clear();
+// })
+
+// $("#weather-section").on("click", function(){
+//     var retrievedBBQ = localStorage.getItem(dateSelected);
+//     console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
+//     const textForDemo = JSON.parse(retrievedBBQ);
+//     document.getElementById("guestList").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
+// })
+
+// $("#add-bbq-btn").on("click", function(){
+//     thisBBQ = new bbqEvent();
+//     thisBBQ.recipes = ["chicken", "beef", "taco"];
+//     thisBBQ.guests = guestList;
+//     thisBBQ.date = '26 Mar';
+//     console.log(`The contents of the BBQ on ${thisBBQ.date} guest list are: ${thisBBQ.guests} with the recipes for: ${thisBBQ.recipes}`);
+//     recipeList = "";
+//     guestList = "";
+//     localStorage.setItem(dateSelected, JSON.stringify(thisBBQ))
+// })
+
+function save() {
+    var guests  = []
+    var recipes = []
+
+    Array.from(document.getElementById("guestlist").children).forEach(item => { 
+        guests.push(item.innerHTML) 
+    })
+    Array.from(document.getElementById("added-Recipes").children).forEach(item => {
+        recipes.push({"query": item.getAttribute("data-query"), 
+                     "index": item.getAttribute("data-query-index")}) 
+    })
+
+    var dateSave = document.getElementById("bbq-date").innerHTML
+
+    var saveObj =  {"guests": guests, "date": dateSave, "recipes": recipes}
+
+    localStorage.setItem("saveData", JSON.stringify(saveObj))
 }
+
+function restore() {
+    var saveData = JSON.parse(localStorage.getItem("saveData"))
+
+    var bbqDateElement = document.getElementById("bbq-date");
+    bbqDateElement.innerHTML = saveData.date;
+
+    saveData.guests.forEach( g => {
+        addUiData(document.getElementById("guestlist"), g);
+    })
+
+    saveData.recipes.forEach( r => {
+        var recipeI = getRecipeData(r.query).hits[r.index]
+
+        // Create Element inside the card
+        var images=document.createElement('img');
+        var li= document.createElement('li');
+        var recipeName=document.createElement('a');
+
+        images.setAttribute('src', recipeI.recipe.image);
+        li.classList.add('columns','recipe-items');
+        recipeName.classList.add('column','is-two-quaters','recipe-name')
+        recipeName.setAttribute('href',recipeI.recipe.url);
+        recipeName.setAttribute('target','_blank');
+        // addBtn.classList.add('button','is-primary', 'recipe-add-button');
+        // removeBtn.classList.add ('button','is-primary');
+        // removeBtn.setAttribute('style','display:none');
+        images.classList.add('column','is-one-quarter');
+
+        li.setAttribute("data-query", recipeData.q)
+        li.setAttribute("data-query-index", i)
+        
+        recipeName.textContent=item.recipe.label;
+    
+        // Append to parent cards
+        li.appendChild(images);
+        li.appendChild(recipeName);
+        ul.appendChild(li);
+    })
 }
-$("#add-guest-btn").on("click", function(){
-var name= document.getElementById("new-guest").value;
-guestList.push(name);
-console.log("Guest added");
-console.log(name);
-console.log(guestList);
-
-})
-
-//$("#added-Recipes").on("click", function(){
-// console.log("Clearing");
-//localStorage.clear();
-
-//})
-
-$("#weather-section").on("click", function(){
-    var retrievedBBQ = localStorage.getItem(dateSelected);
-    console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
-    const textForDemo = JSON.parse(retrievedBBQ);
-    document.getElementById("guestList").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
-})
-
-$("#add-bbq-btn").on("click", function(){
-thisBBQ = new bbqEvent();
-thisBBQ.recipes = ["chicken", "beef", "taco"];
-thisBBQ.guests = guestList;
-thisBBQ.date = '26 Mar';
-console.log(`The contents of the BBQ on ${thisBBQ.date} guest list are: ${thisBBQ.guests} with the recipes for: ${thisBBQ.recipes}`);
-recipeList = "";
-guestList = "";
-localStorage.setItem(dateSelected, JSON.stringify(thisBBQ))
-})
 
 onclick="setDateFunction('today+0' + 'today+1' + 'today+2' + 'today+3' + 'today+4')"
 
@@ -89,7 +145,6 @@ var getRecipeData = function(searchValue){
 
                         if(recipeData){
                             renderRecipeList();
-                             
                         }
                     })
             }
@@ -98,16 +153,14 @@ var getRecipeData = function(searchValue){
             alert("Unable to connect to recipe data")});
 };
 
-
 getRecipeData("bbq");
-
-
 
 var renderRecipeList= function(){
 
-    //  Run for each to get the item from API
+    var ul = document.getElementById('list-recipes');
 
-    recipeData.hits.forEach(item=>{
+    //  Run for each to get the item from API
+    recipeData.hits.forEach((item, i) =>{
 
         // Create Element inside the card
         var images=document.createElement('img');
@@ -124,24 +177,24 @@ var renderRecipeList= function(){
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
-        addBtn.classList.add('button','is-primary');
+        addBtn.classList.add('button','is-primary', 'recipe-add-button');
         removeBtn.classList.add ('button','is-primary');
         removeBtn.setAttribute('style','display:none');
         images.classList.add('column','is-one-quarter');
 
+        li.setAttribute("data-query", recipeData.q)
+        li.setAttribute("data-query-index", i)
+        
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
-        
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
         li.appendChild(removeBtn)
         ul.appendChild(li);
         
-
         // Add click to remove the parent container
-
         addBtn.addEventListener('click',function(event){
             
             // Remove li
@@ -159,52 +212,32 @@ var renderRecipeList= function(){
             e.target.parentNode.remove();
 
         })
-        
-
-
     });
-    
-   
-
 };
 
 getRecipeData("bbq");
 
 
 // Add Even listener to click the button 
-
-
-
-searchBtn.addEventListener('click',function(){
-       
+searchBtn.addEventListener('click',function(){  
     var searchRecipeData= searchRecipeInput.value.trim();
 
-    
-
-
-     // remove item if having data before render new list
-
+    // remove item if having data before render new list
     var removeLiEl=document.querySelectorAll('.recipe-items');
     if(removeLiEl){
-    removeLiEl.forEach(i=>{
-        i.remove()
-
-    } );
-};
+        removeLiEl.forEach(i=>{
+            i.remove()
+        });
+    };
         
-        getRecipeData(searchRecipeData);
-
+    getRecipeData(searchRecipeData);
 });
-
-
-
 
 // Get the modal
 var modal = document.getElementsByClassName('modal');
 
 // Get the button that opens the modal
 var btn = document.getElementsByClassName("myBtn");
-
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close");
@@ -234,14 +267,14 @@ window.onclick = function(event) {
 
 // Modal Input
 
-// FUNCTION TO CREATE P TAG AND ADD WEATHER ELEMENT
-var addWeatherData = function(dayElement, weatherDataType, classStyle){
+// FUNCTION TO CREATE P TAG AND ADD SOME ELEMENT
+var addUiData = function(element, elementData, optionalClassStyle){
     var paraElement = document.createElement("p");
-    paraElement.innerHTML = weatherDataType;
-    paraElement.setAttribute("class", classStyle);
-    dayElement.appendChild(paraElement);
+    paraElement.innerHTML = elementData;
+    if (optionalClassStyle)
+        paraElement.setAttribute("class", optionalClassStyle);
+    element.appendChild(paraElement);
 }
-
 
 // FUNCTION TO ASSIGN RELEVANT WEATHER INFO FROM PULLED DATA
 var useWeatherData = function(weatherData){
@@ -256,7 +289,7 @@ var useWeatherData = function(weatherData){
         } else {
             date = moment().add(i, 'days').format('MMMM Do YYYY');
         }
-        addWeatherData(dayElement, date);
+        addUiData(dayElement, date);
         // set data element to be used for when clicked
         dayElement.setAttribute("data-date", date);
 
@@ -271,19 +304,19 @@ var useWeatherData = function(weatherData){
         // para.setAttribute("class", "capitalize");
         // para.innerHTML = weatherDescription;
         // dayElement.appendChild(para);
-        addWeatherData(dayElement, weatherDescription, "capitalize");
+        addUiData(dayElement, weatherDescription, "capitalize");
         // display day temp
         var dayTemp = Math.floor(weatherData.daily[i].temp.day);
         var dayTempStr = `Day: ${dayTemp}`;
-        addWeatherData(dayElement, dayTempStr);
+        addUiData(dayElement, dayTempStr);
         // display daytime feels like temp
         var dayTempFeelsLike = Math.floor(weatherData.daily[i].feels_like.day);
         var dayFeelsStr = `Feels: ${dayTempFeelsLike}`;
-        addWeatherData(dayElement, dayFeelsStr);
+        addUiData(dayElement, dayFeelsStr);
         // display evening temp
         var eveTemp = Math.floor(weatherData.daily[i].temp.eve);
         var eveTempStr = `Eve: ${eveTemp}`;
-        addWeatherData(dayElement, eveTempStr);
+        addUiData(dayElement, eveTempStr);
         // display evening feels like temp - removed for space
         // var eveTempFeelsLike = Math.floor(weatherData.daily[i].feels_like.eve);
         // var eveFeelsStr = `Feels: ${eveTempFeelsLike}`;
@@ -291,7 +324,7 @@ var useWeatherData = function(weatherData){
         // display UVI
         var uvi = Math.floor(weatherData.daily[i].uvi);
         var uviStr = `UVI: ${uvi}`;
-        addWeatherData(dayElement,uviStr);
+        addUiData(dayElement,uviStr);
         // var for displaying weather analysis
         var comment = ""
         // conditional statement to generate comment and bg colouring
@@ -308,10 +341,9 @@ var useWeatherData = function(weatherData){
             comment = "Maybe not today!"
             dayElement.classList.add("cold");
         };
-        addWeatherData(dayElement, comment, "bold");
+        addUiData(dayElement, comment, "bold");
     };
 }
-
 
 // FUNCTION TO GET WEATHER
 var getWeatherData = function(){
@@ -324,8 +356,10 @@ var getWeatherData = function(){
                 response.json()
                     .then(function(data){
                         weatherData = data;
-                        console.log(weatherData);
+                        // console.log(weatherData);
+                        localStorage.setItem("dailyWeatherData", JSON.stringify(weatherData.daily))
                         useWeatherData(weatherData);
+
                     })
             }
         })
@@ -335,9 +369,24 @@ var getWeatherData = function(){
         });
 };
 
-
 getWeatherData();
 //getRecipeData();
+
+
+// TO COLLAPSE SECTIONS
+// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+            content.style.display = "none";
+        } else {
+            content.style.display = "block";
+        }
+    });
+};
 
 
 // EVENT LISTENER FOR CLICKING ON DATE SECTION
@@ -349,30 +398,14 @@ $("#weather-section").on("click", ".day", function(){
     var bbqDateElement = document.getElementById("bbq-date");
     bbqDateElement.innerHTML = bbqDate;
 })
-
-
+    
 // EVENT LISTENER FOR "ADD GUEST" BUTTON
 $("#add-guest-btn").on("click", function(){
     var guest = document.querySelector("#new-guest").value.trim();
     //console.log(guest);
     var guestlistElement = document.getElementById("guestlist");
-    addWeatherData(guestlistElement,guest);
+    addUiData(guestlistElement, guest);
     guestsArray.push(guest);
     //console.log(guestsArray);
     document.querySelector("#new-guest").value = "";
 })
-
-// TO COLLAPSE SECTIONS
-// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
-var coll = document.getElementsByClassName("collapsible");
-for (var i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-};
