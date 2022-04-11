@@ -138,7 +138,25 @@ h2{
     height: 200px;
 }
 
+.collapsible{
+    color:whitesmoke;
+    text-align: center;
+    font-size: 24px;
+    background-color: #000;
+}
 
+.header-statement{
+font-family: cursive;
+color: bisque;
+font-size: 24px;
+text-align: center;
+}
+.header-statement-author{
+    font-family: cursive;
+color: bisque;
+font-size: 20px;
+margin: 10px;
+text-align: center
 
 /* .add-btn{
 
@@ -152,3 +170,16 @@ h2{
     
 } */
 
+} 
+.bbq-boss{
+    font-size: 60px;
+}
+
+.add-guest-section{
+    border-radius: 15px;
+}
+
+@media screen and (max-width:575px) {
+    .hero {
+      display: none;
+    }}

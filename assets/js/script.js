@@ -24,40 +24,6 @@ var dateSelected = "Monday";
 // New Class for holding a BBQ
 console.log("Im working!");
 
-// class bbqEvent {
-//     constructor(recipes, guests, date) {
-//         this.recipes = recipes;
-//         this.guests = guests;
-//         this.date = date;
-//     }
-// }
-
-// $("#add-guest-btn").on("click", function(){
-//     var name= document.getElementById("new-guest").value;
-//     guestList.push(name);
-//     console.log("Guest added");
-//     console.log(name);
-//     console.log(guestList);
-// })
-
-// $("#weather-section").on("click", function(){
-//     var retrievedBBQ = localStorage.getItem(dateSelected);
-//     console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
-//     const textForDemo = JSON.parse(retrievedBBQ);
-//     document.getElementById("guestList").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
-// })
-
-// $("#add-bbq-btn").on("click", function(){
-//     thisBBQ = new bbqEvent();
-//     thisBBQ.recipes = ["chicken", "beef", "taco"];
-//     thisBBQ.guests = guestList;
-//     thisBBQ.date = '26 Mar';
-//     console.log(`The contents of the BBQ on ${thisBBQ.date} guest list are: ${thisBBQ.guests} with the recipes for: ${thisBBQ.recipes}`);
-//     recipeList = "";
-//     guestList = "";
-//     localStorage.setItem(dateSelected, JSON.stringify(thisBBQ))
-// })
-
 function save() {
     var guests  = []
     var recipes = []
@@ -185,15 +151,23 @@ var renderRecipeList= function(){
         // Add attribute and class for styling
         removeBtn.textContent="Remove";
         addBtn.textContent= "Add";
+    
+        // Add attribute and class for styling
+        li.classList.add('columns','recipe-items','m-1','p-1','has-background-warning-light','has-text-centered-mobile');
+    
+        addBtn.classList.add('button','is-primary','mr-4');
         images.setAttribute('src',item.recipe.image);
-        li.classList.add('columns','recipe-items');
+        images.classList.add('image','is-one-quarter','is-48x48','is-inline-block-mobile');
+        
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
-        addBtn.classList.add('button','is-primary', 'recipe-add-button');
-        removeBtn.classList.add ('button','is-primary');
+        
+        removeBtn.textContent="Remove";
+        removeBtn.classList.add ('button','is-primary','mr-4');
         removeBtn.setAttribute('style','display:none');
-        images.classList.add('column','is-one-quarter');
+
+       
 
         li.setAttribute("data-query", recipeData.q)
         li.setAttribute("data-query-index", i)
@@ -234,6 +208,7 @@ var renderRecipeList= function(){
 // Add Even listener to click the button 
 searchBtn.addEventListener('click',function(){  
     var searchRecipeData= searchRecipeInput.value.trim();
+    
 
     // remove item if having data before render new list
     var removeLiEl=document.querySelectorAll('.recipe-items');
@@ -386,20 +361,20 @@ getWeatherData();
 //getRecipeData();
 
 
-// TO COLLAPSE SECTIONS
-// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
-var coll = document.getElementsByClassName("collapsible");
-for (var i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        var content = this.nextElementSibling;
-        if (content.style.display === "block") {
-            content.style.display = "none";
-        } else {
-            content.style.display = "block";
-        }
-    });
-};
+// // TO COLLAPSE SECTIONS
+// // Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
+// var coll = document.getElementsByClassName("collapsible");
+// for (var i = 0; i < coll.length; i++) {
+//     coll[i].addEventListener("click", function() {
+//         this.classList.toggle("active");
+//         var content = this.nextElementSibling;
+//         if (content.style.display === "block") {
+//             content.style.display = "none";
+//         } else {
+//             content.style.display = "block";
+//         }
+//     });
+// };
 
 
 // EVENT LISTENER FOR CLICKING ON DATE SECTION
@@ -422,3 +397,19 @@ $("#add-guest-btn").on("click", function(){
     //console.log(guestsArray);
     document.querySelector("#new-guest").value = "";
 })
+
+// TO COLLAPSE SECTIONS
+// Copied from - https://www.w3schools.com/howto/howto_js_collapsible.asp
+var coll = document.getElementsByClassName("collapsible");
+for (var i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+};
+
