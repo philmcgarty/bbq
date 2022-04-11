@@ -40,11 +40,6 @@ console.log("Im working!");
 //     console.log(guestList);
 // })
 
-// $("#added-Recipes").on("click", function(){
-//     console.log("Clearing");
-//     localStorage.clear();
-// })
-
 // $("#weather-section").on("click", function(){
 //     var retrievedBBQ = localStorage.getItem(dateSelected);
 //     console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
@@ -93,7 +88,10 @@ function restore() {
     })
 
     saveData.recipes.forEach( r => {
-        var recipeI = getRecipeData(r.query).hits[r.index]
+
+        getRecipeData(r.query, false)
+        
+        var recipeI = JSON.parse(localStorage.currentRecipeQuery).hits[JSON.parse(r.index)]
 
         // Create Element inside the card
         var images=document.createElement('img');
@@ -113,13 +111,18 @@ function restore() {
         li.setAttribute("data-query", recipeData.q)
         li.setAttribute("data-query-index", i)
         
-        recipeName.textContent=item.recipe.label;
+        recipeName.textContent=recipeI.recipe.label;
     
         // Append to parent cards
         li.appendChild(images);
         li.appendChild(recipeName);
-        ul.appendChild(li);
+        addedRecipes.appendChild(li);
     })
+}
+
+function clearStorage(){
+    console.log("Clearing");
+    localStorage.removeItem("saveData");
 }
 
 onclick="setDateFunction('today+0' + 'today+1' + 'today+2' + 'today+3' + 'today+4')"
@@ -129,7 +132,7 @@ function setDateFunction(dayAdd) {
 }
 
 // basic function to pull bbq info from the recipe API
-var getRecipeData = function(searchValue){
+var getRecipeData = function(searchValue, renderRecipes){
     
     var tastyUrl = "https://api.edamam.com/search?q="+searchValue+"&app_id=800e3765&app_key=fe74dbedc36e502afaf6d444ca0f100e";
 
@@ -143,8 +146,10 @@ var getRecipeData = function(searchValue){
                         console.log(recipeData);
                         // Calling function showing recipe list
 
-                        if(recipeData){
+                        if(renderRecipes){
                             renderRecipeList();
+                        } else {
+                            localStorage.setItem("currentRecipeQuery", JSON.stringify(recipeData));
                         }
                     })
             }
@@ -153,7 +158,7 @@ var getRecipeData = function(searchValue){
             alert("Unable to connect to recipe data")});
 };
 
-getRecipeData("bbq");
+getRecipeData("bbq", true);
 
 var renderRecipeList= function(){
 
@@ -215,7 +220,7 @@ var renderRecipeList= function(){
     });
 };
 
-getRecipeData("bbq");
+// getRecipeData("bbq");
 
 
 // Add Even listener to click the button 
@@ -230,40 +235,40 @@ searchBtn.addEventListener('click',function(){
         });
     };
         
-    getRecipeData(searchRecipeData);
+    getRecipeData(searchRecipeData, true);
 });
 
-// Get the modal
-var modal = document.getElementsByClassName('modal');
+// // Get the modal
+// var modal = document.getElementsByClassName('modal');
 
-// Get the button that opens the modal
-var btn = document.getElementsByClassName("myBtn");
+// // Get the button that opens the modal
+// var btn = document.getElementsByClassName("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close");
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close");
 
-// When the user clicks the button, open the modal 
-btn[0].onclick = function() {
-    modal[0].style.display = "block";
-}
+// // When the user clicks the button, open the modal 
+// btn[0].onclick = function() {
+//     modal[0].style.display = "block";
+// }
 
-btn[1].onclick = function() {
-    modal[1].style.display = "block";
-}
-// When the user clicks on <span> (x), close the modal
-span[0].onclick = function() {
-    modal[0].style.display = "none";
-}
+// btn[1].onclick = function() {
+//     modal[1].style.display = "block";
+// }
+// // When the user clicks on <span> (x), close the modal
+// span[0].onclick = function() {
+//     modal[0].style.display = "none";
+// }
 
-span[1].onclick = function() {
-    modal[1].style.display = "none";
-}
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// span[1].onclick = function() {
+//     modal[1].style.display = "none";
+// }
+// // When the user clicks anywhere outside of the modal, close it
+// window.onclick = function(event) {
+//     if (event.target == modal) {
+//         modal.style.display = "none";
+//     }
+// }
 
 // Modal Input
 
