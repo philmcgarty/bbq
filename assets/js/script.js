@@ -93,6 +93,7 @@ function clearStorageModal(){
 function clearStorageYes(){
     localStorage.removeItem("saveData");
     bulmaModal.classList.remove('is-active');
+    window.location.reload();
 }
 
 function clearStorageNo(){
