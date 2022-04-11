@@ -27,6 +27,7 @@
     <!-- Previous saved bbq parties list -->
     <nav id="party-search">
 
+
     </nav>
 
     <!-- Weather section -->
@@ -54,28 +55,52 @@
     </section>
 
     <!-- Add guest section -->
-    
+
     <section class="block" id="add-guest-section">
         <h2>Add Guests:</h2>
         <form class="field has-addons">
             <input type="text" class="input" id="new-guest" name="new-guest" placeholder="Guest Name">
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
-            <button class="button is-primary" type="button" id="save-party-info-btn">Save Party Info</button>
-            
+            <button class="button is-primary" type="button" id="save-party-info-btn" onclick="savePartyInfo()" >Save Party Info</button>
         </form>
-        
+     
+        <script>
+            // const  savePartyInfoBtn = document.querySelector('#save-party-info-btn');
+            // const modalBg = document.querySelector('.modal-background');
+            // const bulmaModal = document.getElementById('bulmaModal');
+
+            // savePartyInfoBtn.addEventListener('click', () => {
+            //         if (bulmaModal.classList.contains('is-active'))
+            //             bulmaModal.classList.remove('is-active');
+            //         else
+            //             bulmaModal.classList.add('is-active');
+            //     });
+
+            function savePartyInfo() {
+
+                // alert("Working")
+                // console.log("This is me: \n\n\n" + JSON.stringify(weatherData))
+                localStorage.setItem("weatherData", JSON.stringify(weatherData))
+                localStorage.setItem("recipeData", JSON.stringify(recipeData))
+                localStorage.setItem("recipesArray", JSON.stringify(recipesArray))
+                localStorage.setItem("guestsArray", JSON.stringify(guestsArray))
+
+                const localStorageObject = { ...localStorage }
+                console.log("Local storage:" +  JSON.stringify(localStorageObject))
+            }
+        </script>  
     </section>
 
-     <!-- BBQ Information Form -->
-    <section class=“block” id=“bbq-form”>
+    <!-- BBQ Information Form -->
+    <section class="block" id="bbq-form">
         <h2></h2>
         <p>
-            Date: <span id=“bbq-date”></span>
+            Date: <span id="bbq-date"></span>
         </p>
-        <div id=“guestlist”>
+        <div id="guestlist">
             Guest List:
         </div>
-        <div id=“addedRecipes”>
+        <div id="added-Recipes">
         </div>
     </section>
 
@@ -89,9 +114,7 @@
         </input>
 
         <div class="display-recipe-container" >
-
             <h2 class="collapsible">Recipes</h2>
-
 
             <ul id="list-recipes" class="recipes">
                 
@@ -144,6 +167,12 @@
       
       </div>
 
+    <div class="modal" id="bulmaModal">
+        <div class="modal-background"></div>
+        <div class="modal-content has-background-white py-5 px-5">
+            <h3 calss="title mb6">Save Party Information</h3>        
+    </div>  
+
     <!-- jQuery ref -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- Monent.js link -->
@@ -156,3 +185,4 @@
 </body>
 
 </html>
+

@@ -1,8 +1,7 @@
 // Global Variables
 var searchRecipeInput=document.getElementById('recipe-search-input');
 var searchBtn=document.getElementById('search-recipe-btn');
-var addedRecipes=document.getElementById('addedRecipes');
-
+var addedRecipes=document.getElementById('added-Recipes');
 // for saving all info to local storage
 var formInfoArray = [];
 // for saving date of bbq to local storage
@@ -15,6 +14,9 @@ var recipesArray =[];
 // var for recipes that have been pulled from the API
 var recipeData = {};
 
+// var for object weather data 
+var weatherData = {};
+
 var ul= document.getElementById ('list-recipes');
 
 
@@ -22,7 +24,6 @@ var ul= document.getElementById ('list-recipes');
 var recipeList = [];
 var guestList = [];
 var dateSelected = "Monday";
-
 // New Class for holding a BBQ
 console.log("Im working!");
 class bbqEvent {
@@ -40,36 +41,41 @@ console.log(name);
 console.log(guestList);
 
 })
-$("#add-recipe-btn").on("click", function(){
-console.log("Clearing");
-localStorage.clear();
 
-})
+//$("#added-Recipes").on("click", function(){
+// console.log("Clearing");
+//localStorage.clear();
+
+//})
 
 $("#weather-section").on("click", function(){
-var retrievedBBQ = localStorage.getItem(dateSelected);
-console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
-const textForDemo = JSON.parse(retrievedBBQ);
-document.getElementById("weather-section").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
-
+    var retrievedBBQ = localStorage.getItem(dateSelected);
+    console.log(`The bbq is:`, JSON.parse(retrievedBBQ));
+    const textForDemo = JSON.parse(retrievedBBQ);
+    document.getElementById("guestList").innerHTML = textForDemo.date + ", " + textForDemo.recipes[0];
 })
 
-$("#save-party-info-btn").on("click", function(){
+$("#add-bbq-btn").on("click", function(){
 thisBBQ = new bbqEvent();
 thisBBQ.recipes = ["chicken", "beef", "taco"];
 thisBBQ.guests = guestList;
-thisBBQ.date = '';
+thisBBQ.date = '26 Mar';
 console.log(`The contents of the BBQ on ${thisBBQ.date} guest list are: ${thisBBQ.guests} with the recipes for: ${thisBBQ.recipes}`);
 recipeList = "";
 guestList = "";
 localStorage.setItem(dateSelected, JSON.stringify(thisBBQ))
 })
 
+onclick="setDateFunction('today+0' + 'today+1' + 'today+2' + 'today+3' + 'today+4')"
+
+function setDateFunction(dayAdd) {
+    bbqDate = currentDate + dayAdd;
+}
+
 // basic function to pull bbq info from the recipe API
 var getRecipeData = function(searchValue){
     
     var tastyUrl = "https://api.edamam.com/search?q="+searchValue+"&app_id=800e3765&app_key=fe74dbedc36e502afaf6d444ca0f100e";
-
 
     console.log(tastyUrl);
     fetch(tastyUrl)
@@ -81,11 +87,9 @@ var getRecipeData = function(searchValue){
                         console.log(recipeData);
                         // Calling function showing recipe list
 
-
                         if(recipeData){
                             renderRecipeList();
                              
-
                         }
                     })
             }
@@ -96,32 +100,35 @@ var getRecipeData = function(searchValue){
 
 
 getRecipeData("bbq");
+
+
+
 var renderRecipeList= function(){
+
     //  Run for each to get the item from API
+
     recipeData.hits.forEach(item=>{
+
         // Create Element inside the card
         var images=document.createElement('img');
         var li= document.createElement('li');
         var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
-
         var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
         removeBtn.textContent="Remove";
         addBtn.textContent= "Add";
-
         images.setAttribute('src',item.recipe.image);
         li.classList.add('columns','recipe-items');
-        recipeName.classList.add('column','is-two-quaters','recipe-name');
+        recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
         addBtn.classList.add('button','is-primary');
-
         removeBtn.classList.add ('button','is-primary');
         removeBtn.setAttribute('style','display:none');
-
         images.classList.add('column','is-one-quarter');
+
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
@@ -130,17 +137,17 @@ var renderRecipeList= function(){
         li.appendChild(recipeName);
         li.appendChild(addBtn);
         li.appendChild(removeBtn)
-
         ul.appendChild(li);
         
+
         // Add click to remove the parent container
+
         addBtn.addEventListener('click',function(event){
             
             // Remove li
             event.target.parentNode.remove();
             // Add to bbq information
             addedRecipes.appendChild(event.target.parentNode);
-
             // Replace add button by remove button
             event.target.style.display= "none";
             event.target.nextElementSibling.style.display="block";
@@ -152,17 +159,28 @@ var renderRecipeList= function(){
             e.target.parentNode.remove();
 
         })
-
         
+
+
     });
     
    
+
 };
-     
+
+getRecipeData("bbq");
+
+
 // Add Even listener to click the button 
+
+
+
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
+
+    
+
 
      // remove item if having data before render new list
 
@@ -172,10 +190,14 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-};      
+};
+        
         getRecipeData(searchRecipeData);
 
 });
+
+
+
 
 // Get the modal
 var modal = document.getElementsByClassName('modal');
@@ -210,6 +232,7 @@ window.onclick = function(event) {
     }
 }
 
+// Modal Input
 
 // FUNCTION TO CREATE P TAG AND ADD WEATHER ELEMENT
 var addWeatherData = function(dayElement, weatherDataType, classStyle){
@@ -292,7 +315,6 @@ var useWeatherData = function(weatherData){
 
 // FUNCTION TO GET WEATHER
 var getWeatherData = function(){
-    var weatherData = {};
     // API call hardcoded to location of Ottawa for MVP
     var weatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=45.424721&lon=-75.695000&exclude=minutely,hourly,alerts&units=metric&appid=8afb55e108bfe22e6df569f88292df63"
     console.log(weatherUrl);
@@ -309,11 +331,7 @@ var getWeatherData = function(){
         })
         .catch(function(){
             // switch for modal
-            var modal = document.getElementById('weatherModal');
-            modal.style.display = 'block';
-            span.onclick = function() {
-                modal.style.display = 'none';
-            }
+            alert("Unable to connect to weather data");
         });
 };
 
@@ -357,6 +375,4 @@ for (var i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
-
 };
-
