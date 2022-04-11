@@ -120,9 +120,17 @@ function restore() {
     })
 }
 
-function clearStorage(){
-    console.log("Clearing");
+function clearStorageModal(){
+    bulmaModal.classList.add('is-active');
+}
+
+function clearStorageYes(){
     localStorage.removeItem("saveData");
+    bulmaModal.classList.remove('is-active');
+}
+
+function clearStorageNo(){
+    bulmaModal.classList.remove('is-active');
 }
 
 onclick="setDateFunction('today+0' + 'today+1' + 'today+2' + 'today+3' + 'today+4')"

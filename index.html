@@ -63,7 +63,7 @@
             <button class="button is-primary" type="button" id="add-guest-btn">Add to Guest List</button>
             <button class="button is-primary" type="button" id="save-party-info-btn" onclick="save()">Save Party Info</button>
             <button class="button is-primary" type="button" id="restore-party-info-btn" onclick="restore()">Restore Party Info</button>
-            <button class="button is-primary" type="button" id="clear-party-info-btn" onclick="clearStorage()">Clear Stored Party Info</button>
+            <button class="button is-primary" type="button" id="clear-party-info-btn" onclick="clearStorageModal()">Clear Stored Party Info</button>
 
         <!-- </form> -->
         
@@ -131,7 +131,9 @@
     <div class="modal" id="bulmaModal">
         <div class="modal-background"></div>
         <div class="modal-content has-background-white py-5 px-5">
-            <h3 calss="title mb6">Save Party Information</h3>        
+            <h3 calss="title mb6">Are you sure you want to clear your stored party info?</h3>    
+            <button onclick="clearStorageYes()">Yes</button>
+            <button onclick="clearStorageNo()">NO!!!!</button>  
     </div>  
 
     <!-- jQuery ref -->
