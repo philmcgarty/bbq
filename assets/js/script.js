@@ -18,9 +18,6 @@ var recipeData = {};
 var ul= document.getElementById ('list-recipes');
 
 
-
-
-
 // basic function to pull bbq info from the recipe API
 var getRecipeData = function(searchValue){
     
@@ -38,11 +35,10 @@ var getRecipeData = function(searchValue){
                         // Calling function showing recipe list
 
 
-                        if(recipeData){
+                    if(recipeData){
                             renderRecipeList();
-                             
-
-                        }
+                           
+                        } 
                     })
             }
         }).catch(function(){
@@ -66,35 +62,36 @@ var renderRecipeList= function(){
         var li= document.createElement('li');
         var recipeName=document.createElement('a');
         var addBtn = document.createElement('button');
+        var removeBtn=document.createElement('button');
 
         var removeBtn=document.createElement('button');
 
         // Add attribute and class for styling
-        removeBtn.textContent="Remove";
-        addBtn.textContent= "Add";
+        li.classList.add('columns','recipe-items','m-1','p-1','has-background-warning-light','has-text-centered-mobile');
 
+        addBtn.textContent= "Add";
+        addBtn.classList.add('button','is-primary','mr-4');
         images.setAttribute('src',item.recipe.image);
-        li.classList.add('columns','recipe-items');
+        images.classList.add('image','is-one-quarter','is-48x48','is-inline-block-mobile');
+        
         recipeName.classList.add('column','is-two-quaters','recipe-name')
         recipeName.setAttribute('href',item.recipe.url);
         recipeName.setAttribute('target','_blank');
-        addBtn.classList.add('button','is-primary');
-
-        removeBtn.classList.add ('button','is-primary');
+        
+        removeBtn.textContent="Remove";
+        removeBtn.classList.add ('button','is-primary','mr-4');
         removeBtn.setAttribute('style','display:none');
 
-        images.classList.add('column','is-one-quarter');
+       
 
         recipeName.textContent=item.recipe.label;
     
         // Append to parent cards
-
         
         li.appendChild(images);
         li.appendChild(recipeName);
         li.appendChild(addBtn);
         li.appendChild(removeBtn)
-
         ul.appendChild(li);
         
 
@@ -106,6 +103,10 @@ var renderRecipeList= function(){
             event.target.parentNode.remove();
             // Add to bbq information
             addedRecipes.appendChild(event.target.parentNode);
+            // Replace add button by remove button
+            event.target.style.display= "none";
+            event.target.nextElementSibling.style.display="block";
+
 
             // Replace add button by remove button
             event.target.style.display= "none";
@@ -118,14 +119,8 @@ var renderRecipeList= function(){
             e.target.parentNode.remove();
 
         })
-
         
-
-
     });
-    
-   
-
 };
 
 getRecipeData("bbq");
@@ -135,6 +130,7 @@ getRecipeData("bbq");
 searchBtn.addEventListener('click',function(){
        
     var searchRecipeData= searchRecipeInput.value.trim();
+    
 
      // remove item if having data before render new list
 
@@ -144,9 +140,10 @@ searchBtn.addEventListener('click',function(){
         i.remove()
 
     } );
-};      
+};    
+    
         getRecipeData(searchRecipeData);
-
+       
 });
 
 
@@ -326,6 +323,5 @@ for (var i = 0; i < coll.length; i++) {
       content.style.display = "block";
     }
   });
-
 };
 
